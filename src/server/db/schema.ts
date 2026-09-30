@@ -133,6 +133,12 @@ export const document = pgTable("document", {
   sha256: text("sha256").notNull(),
   storageKey: text("storage_key").notNull(),
   extractionStatus: extractionStatusEnum("extraction_status").notNull().default("NONE"),
+  /** Statischer Code, z. B. "no_text_layer" – kein Inhalt */
+  extractionNote: text("extraction_note"),
+  /** Originaltext aus dem PDF (verschlüsselt), unverändert */
+  extractedTextEnc: text("extracted_text_enc"),
+  /** Vom Patienten gewählte Zuordnung zu einer Beschwerde */
+  complaintId: uuid("complaint_id").references(() => complaint.id, { onDelete: "set null" }),
   createdAt: createdAt(),
 });
 
@@ -145,7 +151,14 @@ export const labValue = pgTable("lab_value", {
   unitEnc: text("unit_enc"),
   refRangeAsPrintedEnc: text("ref_range_as_printed_enc"),
   page: integer("page"),
+  /** Originalzeile aus dem Dokument (verschlüsselt) */
+  lineEnc: text("line_enc").notNull(),
+  /** Statischer Parametername aus config/lab-mapping.json, null wenn unbekannt */
+  canonicalName: text("canonical_name"),
+  mappingRegion: text("mapping_region"),
   mappingRuleId: text("mapping_rule_id"),
+  /** PATIENT = Dokument vom Patienten zugeordnet, RULE = Organsystem-Regel, null = ohne Zuordnung */
+  assignedBy: text("assigned_by"),
 });
 
 export const summary = pgTable("summary", {

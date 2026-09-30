@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const config: NextConfig = {
   serverExternalPackages: ["@node-rs/argon2", "pg"],
   poweredByHeader: false,
+  experimental: { serverActions: { bodySizeLimit: "11mb" } },
   async headers() {
     return [
       {

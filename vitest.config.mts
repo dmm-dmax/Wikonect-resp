@@ -18,6 +18,7 @@ export default defineConfig({
       DATABASE_URL: "postgres://anamnese:anamnese_dev@localhost:5432/anamnese_test",
       ENCRYPTION_KEY: "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8=",
       LLM_PROVIDER: "mock",
+      STORAGE_DIR: "/tmp/claude-0/storage-test",
     },
   },
 });

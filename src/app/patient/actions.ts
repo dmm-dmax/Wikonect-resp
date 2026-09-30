@@ -6,6 +6,8 @@ import { registerPatient } from "@/server/invitation";
 import { revokeConsent } from "@/server/consent";
 import { createAuthSession } from "@/server/auth/session";
 import { handlePatientMessage, submitSession } from "@/server/dialog/service";
+import { deleteDocument, uploadDocument } from "@/server/upload/service";
+import { MAX_FILE_BYTES } from "@/server/upload/validate";
 
 export type FormState = { error?: string } | undefined;
 
@@ -50,5 +52,29 @@ export async function sendAction(_: FormState, fd: FormData): Promise<FormState>
 export async function submitAction(fd: FormData) {
   const p = await requirePatient();
   await submitSession(String(fd.get("sessionId") ?? ""), p.id);
+  redirect("/patient/dialog");
+}
+
+export async function uploadAction(_: FormState, fd: FormData): Promise<FormState> {
+  const p = await requirePatient();
+  const file = fd.get("file");
+  if (!(file instanceof File) || file.size === 0) return { error: "Bitte wählen Sie eine Datei." };
+  if (file.size > MAX_FILE_BYTES) return { error: "Die Datei ist größer als 10 MB." };
+  const complaintId = String(fd.get("complaintId") ?? "") || null;
+  const r = await uploadDocument({
+    sessionId: String(fd.get("sessionId") ?? ""),
+    patientId: p.id,
+    filename: file.name,
+    declaredMime: file.type,
+    bytes: Buffer.from(await file.arrayBuffer()),
+    complaintId,
+  });
+  if (!r.ok) return { error: r.error };
+  redirect("/patient/dialog");
+}
+
+export async function deleteDocumentAction(fd: FormData) {
+  const p = await requirePatient();
+  await deleteDocument(String(fd.get("documentId") ?? ""), p.id);
   redirect("/patient/dialog");
 }

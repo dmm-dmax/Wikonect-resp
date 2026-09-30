@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { desc, eq } from "drizzle-orm";
 import { requirePatient } from "@/server/auth/guards";
-import { hasRequiredConsents } from "@/server/consent";
+import { activeConsents, hasRequiredConsents } from "@/server/consent";
 import { db, schema } from "@/server/db";
 import { getDialogView } from "@/server/dialog/service";
 import { submitAction } from "../actions";
+import { listComplaintOptions, listPatientDocuments } from "@/server/upload/service";
 import { MessageForm } from "./form";
+import { UploadCard } from "./upload";
 
 export default async function Page() {
   const p = await requirePatient();
@@ -34,6 +36,9 @@ export default async function Page() {
   }
 
   const done = v.status === "SUBMITTED";
+  const canUpload = !done && (await activeConsents(p.id)).has("upload");
+  const docs = canUpload ? await listPatientDocuments(s.id, p.id) : [];
+  const options = canUpload ? await listComplaintOptions(s.id, p.id) : [];
   return (
     <main className="mx-auto flex min-h-screen max-w-md flex-col gap-4 p-6">
       <header>
@@ -67,6 +72,7 @@ export default async function Page() {
       ) : (
         <MessageForm sessionId={s.id} />
       )}
+      {canUpload && <UploadCard sessionId={s.id} complaints={options} docs={docs} />}
     </main>
   );
 }

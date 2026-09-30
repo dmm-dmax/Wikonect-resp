@@ -7,6 +7,7 @@ import { deleteSessionData } from "../retention";
 import { detectEmergency, emergencyResponse, EMERGENCY_VERSION, type EmergencyResponse } from "../emergency";
 import { checkClinicalTerm } from "../filter";
 import { assertSafeAssistantText, extractComplaints, extractSlot, type ComplaintDraft, type Meta } from "../llm/tasks";
+import { reassignLabs } from "../upload/service";
 import { redactIdentifiers } from "./redact";
 import { splitDeflect, DEFLECT_ANSWER } from "./deflect";
 import {
@@ -236,6 +237,7 @@ export async function handlePatientMessage(sessionId: string, patientId: string,
   }
 
   await saveState(sessionId, st);
+  await reassignLabs(sessionId);
   if (deflected) await addMessage(sessionId, practiceId, "assistant", DEFLECT_ANSWER);
   const fresh = { ...s, dialogState: st } as Session;
   const q = await currentQuestion(fresh, practiceId);

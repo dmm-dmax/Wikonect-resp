@@ -3,6 +3,8 @@
  * Aufruf: SMOKE_BASE=http://localhost:3100 tsx --env-file=.env scripts/smoke.ts
  */
 import { chromium } from "playwright-core";
+import { writeFileSync } from "node:fs";
+import { PDFDocument, StandardFonts } from "pdf-lib";
 import { createDoctor, createPractice } from "../src/server/auth/provision";
 import { currentTotp } from "../src/server/auth/totp";
 
@@ -49,6 +51,18 @@ async function main() {
   await pat.waitForSelector("text=Das klärt Ihr Arzt");
   await pat.screenshot({ path: `${shots}/patient-dialog.png`, fullPage: true });
   console.log("Dialog, Fortschritt, Deflect: ok");
+
+  // Befund-Upload (synthetisches Labor-PDF)
+  const pdf = await PDFDocument.create();
+  const font = await pdf.embedFont(StandardFonts.Helvetica);
+  const page = pdf.addPage([595, 842]);
+  ["Laborbefund (synthetisch)", "Kreatinin 0,9 mg/dl 0,7 - 1,2", "CRP 12,4 mg/l < 5,0"].forEach((l, i) => page.drawText(l, { x: 50, y: 800 - i * 16, size: 10, font }));
+  writeFileSync(`${shots}/labor.pdf`, await pdf.save({ useObjectStreams: false }));
+  await pat.setInputFiles("input[type=file]", `${shots}/labor.pdf`);
+  await pat.click("button:has-text('Hochladen')");
+  await pat.waitForSelector("text=2 Werte übernommen");
+  await pat.screenshot({ path: `${shots}/patient-upload.png`, fullPage: true });
+  console.log("Upload + Laborwerte: ok");
 
   await pat.fill("#text", "Jetzt habe ich Brustschmerzen und Atemnot");
   await pat.click("button:has-text('Senden')");
