@@ -1,8 +1,11 @@
+import Link from "next/link";
 import { desc, eq } from "drizzle-orm";
 import { requireDoctor } from "@/server/auth/guards";
 import { db, schema } from "@/server/db";
 import { InviteForm } from "./invite-form";
 import { logoutAction } from "./actions";
+
+const STATUS = { OPEN: "Patient füllt aus", SUBMITTED: "Zusammenfassung bereit", ABORTED_EMERGENCY: "Sicherheitsabbruch", DELETED: "Gelöscht" } as const;
 
 export default async function Page() {
   const d = await requireDoctor();
@@ -25,7 +28,7 @@ export default async function Page() {
             <table className="w-full text-left text-sm">
               <thead><tr className="border-b text-slate-600"><th className="py-2">Termin</th><th>Patient (Pseudonym)</th><th>Status</th></tr></thead>
               <tbody>{sessions.map((s) => (
-                <tr key={s.id} className="border-b"><td className="py-2">{s.at.toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" })}</td><td>{s.pseudonym}</td><td>{s.status}</td></tr>
+                <tr key={s.id} className="border-b"><td className="py-2">{s.at.toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" })}</td><td>{s.pseudonym}</td><td>{STATUS[s.status]}{s.status === "SUBMITTED" || s.status === "ABORTED_EMERGENCY" ? <Link className="ml-3 text-sky-800 underline" href={`/arzt/sitzung/${s.id}`}>öffnen</Link> : null}</td></tr>
               ))}</tbody>
             </table>
           )}

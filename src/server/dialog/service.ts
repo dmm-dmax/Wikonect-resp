@@ -8,6 +8,7 @@ import { detectEmergency, emergencyResponse, EMERGENCY_VERSION, type EmergencyRe
 import { checkClinicalTerm } from "../filter";
 import { assertSafeAssistantText, extractComplaints, extractSlot, type ComplaintDraft, type Meta } from "../llm/tasks";
 import { reassignLabs } from "../upload/service";
+import { createSummarySnapshot } from "../summary";
 import { redactIdentifiers } from "./redact";
 import { splitDeflect, DEFLECT_ANSWER } from "./deflect";
 import {
@@ -256,6 +257,7 @@ export async function submitSession(sessionId: string, patientId: string): Promi
   if (nextStep(st).kind !== "review") return { ok: false, error: "Der Dialog ist noch nicht abgeschlossen." };
   st.phase = "submitted";
   await db().update(schema.anamnesisSession).set({ status: "SUBMITTED", submittedAt: new Date(), dialogState: st }).where(eq(schema.anamnesisSession.id, sessionId));
+  await createSummarySnapshot(sessionId);
   await audit({ actorType: "patient", actorId: patientId, action: "session.submitted", objectType: "anamnesis_session", objectId: sessionId });
   return { ok: true };
 }

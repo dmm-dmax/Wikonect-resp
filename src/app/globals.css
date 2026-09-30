@@ -7,3 +7,10 @@ body { @apply bg-slate-50 text-slate-900 antialiased; }
 .input { @apply w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-base; }
 .label { @apply mb-1 block text-sm font-medium text-slate-700; }
 .card { @apply rounded-xl border border-slate-200 bg-white p-5 shadow-sm; }
+
+@media print {
+  body { background: white; }
+  .card { box-shadow: none; border-color: #999; }
+  details::details-content { content-visibility: visible; display: block; }
+  a { color: inherit; text-decoration: none; }
+}

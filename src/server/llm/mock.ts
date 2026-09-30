@@ -49,7 +49,7 @@ function extractEntries(text: string, only?: ComplaintField): Entry[] {
   const add = (field: ComplaintField, quote: string | undefined, term: string | null) => {
     if (quote && (!only || only === field)) entries.push({ field, quote, term });
   };
-  const beginn = /\b(seit|vor)\s+[^.,;!?\n]{1,40}|\b(gestern|heute|letzte[rn]? woche)\b/iu.exec(text);
+  const beginn = /\b(?:seit|vor)\s+(?:ca\.?\s*)?(?:\d+|einem|einer|einigen|zwei|drei|vier|fünf|sechs|sieben|gestern|heute)(?:\s+[\p{L}]+)?|\b(?:gestern|heute|letzte[rn]? woche)\b/iu.exec(text);
   add("beginn", beginn?.[0].trim(), beginn ? beginn[0].trim().replace(/^vor\b/i, "vor") : null);
   const dur = findIn(text, lex.duration);
   // "seit 3 Tagen" beschreibt den Beginn, nicht die Dauer einer Episode
