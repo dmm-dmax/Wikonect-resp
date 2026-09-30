@@ -1,0 +1,19 @@
+{
+  "version": "deflect-v1",
+  "answer": "Das klärt Ihr Arzt. Ich bereite Ihre Angaben dafür auf.",
+  "patterns": [
+    "\\bwas (habe|hab) ich\\b",
+    "\\bwas ist (das|es|mit mir)\\b",
+    "\\bworan liegt\\b",
+    "\\bwoher kommt\\b",
+    "\\bwoher (habe|hab) ich\\b",
+    "\\bwas (könnte|kann|koennte) (das|es) sein\\b",
+    "\\bbin ich (krank|schwer krank|in gefahr)\\b",
+    "\\bist (das|es) (schlimm|gefährlich|gefaehrlich|ernst|harmlos|normal)\\b",
+    "\\bwas (soll|muss|kann) ich (jetzt |dagegen )?(tun|machen|nehmen)\\b",
+    "\\bwas bedeutet (das|es)\\b",
+    "\\bwelche (krankheit|diagnose|ursache)\\b",
+    "\\bwie gefährlich\\b",
+    "\\b(soll|muss) ich (zum|in die|ins)\\b"
+  ]
+}

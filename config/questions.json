@@ -1,0 +1,25 @@
+{
+  "version": "questions-v1",
+  "status": "ENTWURF – ungeprüft, medizinische Freigabe ausstehend",
+  "intro": "Beschreiben Sie in Ihren Worten, was Sie zum Arzttermin führt. Nehmen Sie sich Zeit. Sie können mehrere Beschwerden nennen.",
+  "more": "Haben Sie noch weitere Beschwerden, die Sie Ihrer Ärztin / Ihrem Arzt nennen möchten? Wenn nicht, antworten Sie mit „nein“.",
+  "complaintFields": [
+    { "id": "lokalisation", "label": "Lokalisation", "question": "Wo genau haben Sie „{c}“? Nennen Sie die Körperstelle und die Seite (links, rechts, beidseits). Bleibt es dort oder wandert es?" },
+    { "id": "beginn", "label": "Beginn", "question": "Wann hat „{c}“ angefangen? Ein Datum oder ein Zeitraum reicht, zum Beispiel „vor 3 Tagen“." },
+    { "id": "dauer", "label": "Dauer", "question": "Wie lange dauert „{c}“? Ist es dauernd da oder kommt und geht es? Wie lange hält ein Anfall oder eine Phase an?" },
+    { "id": "qualitaet", "label": "Qualität", "question": "Wie fühlt sich „{c}“ an? Zum Beispiel stechend, drückend, brennend, dumpf oder krampfartig. Beschreiben Sie es mit Ihren Worten." },
+    { "id": "intensitaet", "label": "Intensität", "question": "Wie stark ist „{c}“ auf einer Skala von 0 (nicht vorhanden) bis 10 (stärkste vorstellbare Stärke)?" },
+    { "id": "verlauf", "label": "Verlauf", "question": "Wie hat sich „{c}“ seit dem Beginn verändert? Besser, schlechter, gleich oder wechselnd?" },
+    { "id": "ausloeser", "label": "Auslöser / Verstärker / Linderung", "question": "Gibt es Situationen, in denen „{c}“ stärker oder schwächer wird? Zum Beispiel Bewegung, Essen, Ruhe oder eine bestimmte Haltung." },
+    { "id": "begleitsymptome", "label": "Begleitsymptome", "question": "Treten gleichzeitig mit „{c}“ noch andere Beschwerden auf? Nennen Sie alle, auch wenn sie unwichtig erscheinen." }
+  ],
+  "generalFields": [
+    { "id": "vorerkrankungen", "label": "Vorerkrankungen", "question": "Haben Sie Vorerkrankungen oder wurden Sie schon einmal operiert? Nennen Sie, was Ihnen bekannt ist." },
+    { "id": "medikation", "label": "Medikation", "question": "Welche Medikamente nehmen Sie regelmäßig oder zurzeit? Bitte mit Dosis, wenn bekannt. Auch rezeptfreie Mittel und Nahrungsergänzung." },
+    { "id": "allergien", "label": "Allergien / Unverträglichkeiten", "question": "Haben Sie Allergien oder Unverträglichkeiten, zum Beispiel gegen Medikamente oder Nahrung?" }
+  ],
+  "skipAnswers": ["weiss nicht", "weiß nicht", "keine ahnung", "keine angabe", "k.a.", "keine ahnung."],
+  "noAnswers": ["nein", "nö", "nope", "keine", "nichts", "nein danke", "keine weiteren"],
+  "noneText": { "vorerkrankungen": "keine Vorerkrankungen angegeben", "medikation": "keine Medikation angegeben", "allergien": "keine Allergien angegeben", "begleitsymptome": "keine Begleitsymptome angegeben" },
+  "maxComplaints": 5
+}

@@ -1,0 +1,48 @@
+{
+  "version": "filter-v1",
+  "note": "Regex (Flags: iu) auf KI-Ausgaben. Patientenzitate sind ausgenommen. Sicherheitsnetz, kein Nachweis.",
+  "categories": {
+    "diagnose": [
+      "\\bverdacht\\b", "\\bv\\. ?a\\. ", "\\bdiagnos", "\\bdifferential", "\\bdd:", "\\bspricht\\s+(für|dafür|dagegen|gegen)\\b",
+      "\\bdeutet\\s+(darauf|auf|hin)\\b", "\\bhinweis(e|end)?\\s+(auf|für)\\b", "\\bhinweisend\\b", "\\banzeichen\\s+(für|von|einer|eines)\\b",
+      "\\bzeichen\\s+(für|von|einer|eines)\\b", "\\btypisch\\s+für\\b", "\\bvereinbar\\s+mit\\b", "\\bim sinne\\s+(einer|eines|von)\\b",
+      "\\b(leidet|leiden)\\s+an\\b", "\\bpassend\\s+zu\\b", "\\bindikativ\\b", "\\bsuggestiv\\b", "\\bausschluss\\b", "\\bauszuschließen\\b", "\\bnicht auszuschließen\\b"
+    ],
+    "ursache": [
+      "\\bursache", "\\bverursacht", "\\bbedingt\\s+durch\\b", "\\baufgrund\\b", "\\bweil\\b", "\\bdaher\\b", "\\bdeshalb\\b", "\\bdadurch\\b",
+      "\\bführt\\s+zu\\b", "\\bzurückzuführen\\b", "\\bliegt\\s+an\\b", "\\bgrund\\s+für\\b", "\\bgeht\\s+auf\\b.*\\bzurück\\b", "\\bresultiert\\b", "\\bhervorgerufen\\b", "\\bausgelöst\\s+durch\\b"
+    ],
+    "wahrscheinlichkeit": [
+      "\\bwahrscheinlich", "\\bmöglich", "\\bkönnte", "\\bkönnten", "\\bkönnen\\s+sein\\b", "\\bvermutlich\\b", "\\bvermutet\\b", "\\bvermutung\\b", "\\bmutmaßlich\\b",
+      "\\beventuell\\b", "\\bvielleicht\\b", "\\bdenkbar\\b", "\\bin\\s+betracht\\b", "\\bggf\\b", "\\bunwahrscheinlich\\b"
+    ],
+    "dringlichkeit": [
+      "\\bdringend", "\\bakut", "\\bnotfall", "\\bsofort\\b", "\\blebensbedrohlich", "\\bgefährlich", "\\bbedrohlich", "\\bernsthaft", "\\bernst\\b",
+      "\\bbesorgniserregend", "\\bkritisch", "\\bschwerwiegend", "\\bharmlos\\b", "\\bunbedenklich\\b", "\\bunkritisch\\b", "\\bred\\s*flag", "\\bpriorität", "\\bzeitnah\\b", "\\bschnellstmöglich\\b"
+    ],
+    "empfehlung": [
+      "\\bempfehl", "\\bsollte\\b", "\\bsollten\\b", "\\bsollen\\b", "\\bratsam\\b", "\\bzu\\s+raten\\b", "\\braten\\s+(wir|ich)\\b", "\\babklär", "\\babzuklären\\b",
+      "\\bunbedingt\\b", "\\bmüssen\\b", "\\bmuss\\b", "\\bsuchen\\s+sie\\b", "\\b(gehen|wenden)\\s+sie\\s+(sich\\s+)?(zum|zur|an|in|ins)\\b", "\\bnehmen\\s+sie\\s+(ein|das|die|den|dieses|diese|bitte|sofort)\\b", "\\bvorstellung\\s+bei\\b", "\\btherapie\\b", "\\bbehandl", "\\bwäre\\s+(zu|ratsam|sinnvoll)\\b", "\\bsinnvoll\\b", "\\bindiziert\\b"
+    ],
+    "interpretation": [
+      "\\berhöht", "\\berniedrigt", "\\bpathologisch", "\\bauffällig", "\\bunauffällig", "\\bnormwertig", "\\bim\\s+normbereich\\b", "\\bau(ß|ss)erhalb\\s+(der|des)\\s+(norm|referenz)",
+      "\\bphysiologisch", "\\bgrenzwertig", "\\bweist\\s+auf\\b", "\\bzeigt\\s+(an|einen|eine)\\b", "\\bbesorgnis", "\\bschlimm"
+    ]
+  },
+  "diseaseTerms": {
+    "note": "Nur für Felder der Beschwerden (nicht Vorerkrankungen, dort gibt der Patient bekannte Diagnosen an). Erzwingt Symptomebene.",
+    "allowedFields": ["vorerkrankungen"],
+    "patterns": [
+      "herzinfarkt", "myokardinfarkt", "\\binfarkt", "angina\\s+pectoris", "koronar\\w*\\s+(herz)?krankheit", "\\bkhk\\b", "schlaganfall", "\\bapoplex", "\\binsult\\b", "\\btia\\b",
+      "migräne", "migraene", "cluster-?kopfschmerz", "spannungskopfschmerz", "pneumonie", "lungenentzündung", "bronchitis", "asthma", "\\bcopd\\b", "emphysem", "lungenembolie", "\\bembolie\\b", "thrombose",
+      "diabetes", "hypertonie", "bluthochdruck", "hypotonie", "herzinsuffizienz", "vorhofflimmern", "arrhythmie", "kardiomyopathie",
+      "\\w+itis\\b", "\\w*karzinom\\w*", "\\w*lymphom\\w*", "\\w*sarkom\\w*", "\\bkrebs\\b", "\\btumor", "\\bmetastas", "\\bleuk[aä]mie",
+      "\\w*syndrom\\b", "\\w+pathie\\b", "arthrose", "osteoporose", "bandscheibenvorfall", "diskusprolaps", "\\bgicht\\b", "fibromyalgie", "multiple\\s+sklerose", "epilepsie", "parkinson", "demenz", "alzheimer",
+      "depression", "burnout", "angststörung", "panikstörung", "psychose", "schizophren", "bipolar",
+      "infektion", "\\binfekt\\b", "grippe", "influenza", "covid", "corona", "borreliose", "sepsis", "blutvergiftung", "tuberkulose", "\\bhiv\\b", "hepatitis",
+      "appendizitis", "blinddarm", "gallenstein", "nierenstein", "reflux", "\\bulkus\\b", "geschwür", "\\bmorbus\\b", "divertikul", "\\bhernie\\b", "\\bbruch\\b", "fraktur", "\\bzyste\\b", "\\bpolyp",
+      "anämie", "anaemie", "blutarmut", "hyperthyreose", "hypothyreose", "niereninsuffizienz", "zirrhose", "fettleber",
+      "allergie", "neurodermitis", "psoriasis", "ekzem", "gürtelrose", "\\bherpes\\b", "\\bschwanger", "\\bvergiftung"
+    ]
+  }
+}

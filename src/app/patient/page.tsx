@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { and, eq } from "drizzle-orm";
 import { requirePatient } from "@/server/auth/guards";
 import { activeConsents, CONSENT_PURPOSES, hasRequiredConsents } from "@/server/consent";
@@ -14,7 +15,7 @@ export default async function Page() {
       <h1 className="mb-4 text-2xl font-semibold">Ihr Termin</h1>
       {s && <p className="mb-4 text-slate-600">Termin: {s.appointmentAt.toLocaleString("de-DE", { dateStyle: "long", timeStyle: "short" })}</p>}
       {ok && s?.status === "OPEN" ? (
-        <div className="card mb-6"><p className="mb-3">Der Dialog folgt im nächsten Entwicklungsschritt.</p></div>
+        <div className="card mb-6"><p className="mb-3">Beschreiben Sie Ihre Beschwerden. Das dauert etwa 5 bis 10 Minuten.</p><Link className="btn w-full" href="/patient/dialog">Dialog starten</Link></div>
       ) : (
         <div className="card mb-6"><p>Ohne Ihre Einwilligung ist kein Dialog möglich. Ihre Daten wurden gelöscht.</p></div>
       )}

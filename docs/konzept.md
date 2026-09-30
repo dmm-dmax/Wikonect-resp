@@ -33,10 +33,10 @@ Next.js mit TypeScript deckt Patienten-UI (mobile-first), Arzt-UI und Server-API
 ```
 
 **Kernentscheidung: Code steuert, KI füllt.**
-Der Dialog ist ein Zustandsautomat. Er wählt die nächste Frage aus einem kuratierten Katalog. Die KI macht nur:
+Der Dialog ist ein Zustandsautomat. Er wählt die nächste Frage aus einem kuratierten Katalog (`/config/questions.json`). Die KI macht nur:
 1. Slot-Extraktion: Freitext → strukturierte Felder (Originalzitat + Fachbegriff).
-2. Formulierung der Katalogfrage in einfacher Sprache.
-3. Zusammenfassung aus bereits gespeicherten Einträgen.
+
+Änderung ggü. Erstentwurf (bewusst, konservativer): Fragen stehen fertig formuliert im Katalog, die KI formuliert sie nicht um. Die Arzt-Zusammenfassung wird deterministisch aus den gespeicherten Einträgen gebaut, nicht von der KI geschrieben. So gibt es für Patient und Arzt keinen freien KI-Text, der gefiltert werden muss. Zitatprüfung: Jedes von der KI gelieferte Zitat muss wörtlich im Patiententext stehen, sonst gilt die Ausgabe als ungültig.
 
 Grund: Frei generierte Folgefragen können Ursachen andeuten ("Strahlt der Schmerz in den Arm aus?"). Ein Katalog ist prüfbar, die KI nicht. Nachteil: weniger flexibel. Akzeptiert für MVP.
 

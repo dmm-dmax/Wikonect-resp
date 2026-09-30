@@ -5,6 +5,7 @@ import { clearSession, requirePatient, setSessionCookie } from "@/server/auth/gu
 import { registerPatient } from "@/server/invitation";
 import { revokeConsent } from "@/server/consent";
 import { createAuthSession } from "@/server/auth/session";
+import { handlePatientMessage, submitSession } from "@/server/dialog/service";
 
 export type FormState = { error?: string } | undefined;
 
@@ -37,4 +38,17 @@ export async function revokeAction(fd: FormData) {
   const p = await requirePatient();
   await revokeConsent(p.id, String(fd.get("purpose")));
   redirect("/patient");
+}
+
+export async function sendAction(_: FormState, fd: FormData): Promise<FormState> {
+  const p = await requirePatient();
+  const r = await handlePatientMessage(String(fd.get("sessionId") ?? ""), p.id, String(fd.get("text") ?? ""));
+  if (r.kind === "error") return { error: r.error };
+  redirect("/patient/dialog"); // lädt Verlauf, Notfall-Ansicht oder nächste Frage
+}
+
+export async function submitAction(fd: FormData) {
+  const p = await requirePatient();
+  await submitSession(String(fd.get("sessionId") ?? ""), p.id);
+  redirect("/patient/dialog");
 }

@@ -1,0 +1,62 @@
+{
+  "version": "emergency-v1",
+  "status": "ENTWURF – ungeprüft, medizinische Freigabe ausstehend",
+  "note": "Regelbasiert. Texte werden normalisiert (klein, ohne Umlaute/Akzente, ß→ss). Begriffe wirken als Teilstring. Eine Regel trifft, wenn aus JEDER Gruppe ein nicht verneinter Begriff im Gesamttext der Sitzung vorkommt.",
+  "negationBefore": ["kein", "keine", "keinen", "keiner", "keines", "keinem", "nicht", "ohne", "nie", "niemals", "nix"],
+  "negationAfter": ["nicht", "nie", "niemals", "kein", "keine"],
+  "rules": [
+    {
+      "id": "suizid",
+      "kind": "crisis",
+      "negationAware": false,
+      "groups": [[
+        "suizid", "selbstmord", "umbringen", "nicht mehr leben", "lebensmuede",
+        "mir das leben nehmen", "mich toeten", "will sterben", "moechte sterben", "nicht mehr da sein",
+        "selbstverletz", "mich ritzen"
+      ]]
+    },
+    {
+      "id": "brustschmerz_atemnot",
+      "kind": "emergency",
+      "negationAware": true,
+      "groups": [
+        ["brustschmerz", "schmerzen in der brust", "schmerz in der brust", "brustenge", "druck auf der brust", "druck in der brust", "enge in der brust", "brustdruck", "herzschmerz", "herzstechen"],
+        ["atemnot", "luftnot", "kurzatmig", "keine luft", "kaum luft", "schlecht luft", "nicht atmen", "schwer atmen", "atembeschwerden", "ringe nach luft"]
+      ]
+    },
+    {
+      "id": "laehmung",
+      "kind": "emergency",
+      "negationAware": true,
+      "groups": [[
+        "gelaehmt", "laehmung", "kann den arm nicht mehr bewegen", "kann das bein nicht mehr bewegen",
+        "kann arm nicht mehr bewegen", "kann bein nicht mehr bewegen", "gesicht haengt", "mundwinkel haengt", "haengender mundwinkel",
+        "ploetzlich nicht mehr sprechen", "ploetzlich nicht mehr richtig sprechen"
+      ]]
+    },
+    {
+      "id": "bewusstlosigkeit_krampf",
+      "kind": "emergency",
+      "negationAware": true,
+      "groups": [["bewusstlos", "bewusstsein verloren", "krampfanfall", "kollabiert"]]
+    },
+    {
+      "id": "starke_blutung",
+      "kind": "emergency",
+      "negationAware": true,
+      "groups": [["blutet stark", "starke blutung", "blut erbrochen", "blut gespuckt"]]
+    }
+  ],
+  "responses": {
+    "emergency": {
+      "title": "Bitte holen Sie sich jetzt Hilfe",
+      "text": "Ihre Angaben enthalten Begriffe, bei denen wir den Dialog aus Sicherheitsgründen beenden. Wenn diese Beschwerden jetzt bestehen, rufen Sie sofort den Notruf 112 an. Die App kann das nicht einschätzen und ersetzt keinen Notruf.",
+      "lines": ["Notruf: 112 (kostenlos, rund um die Uhr)", "Ärztlicher Bereitschaftsdienst: 116 117 (nicht akut lebensbedrohlich)"]
+    },
+    "crisis": {
+      "title": "Sie sind nicht allein",
+      "text": "Sie haben etwas sehr Belastendes geschrieben. Wir beenden den Dialog, damit Sie sofort Hilfe erreichen. Wenn Sie in akuter Gefahr sind, rufen Sie die 112 an.",
+      "lines": ["Notruf: 112", "Telefonseelsorge: 0800 111 0 111 oder 0800 111 0 222 (kostenlos, rund um die Uhr)", "Ärztlicher Bereitschaftsdienst: 116 117"]
+    }
+  }
+}

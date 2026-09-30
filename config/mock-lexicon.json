@@ -1,0 +1,29 @@
+{
+  "note": "Nur für MockProvider (Entwicklung/Tests). Symptom- und Anatomieebene, keine Krankheitsnamen außer Vorerkrankungen-Echo.",
+  "complaints": [
+    { "match": ["kopfschmerz", "kopfweh", "migraene"], "label": "Kopfschmerzen", "clinical": "Kephalgie", "region": "kopf" },
+    { "match": ["bauchschmerz", "bauchweh", "magenschmerz"], "label": "Bauchschmerzen", "clinical": "Abdominalschmerz", "region": "abdomen" },
+    { "match": ["brustschmerz", "schmerzen in der brust", "druck auf der brust"], "label": "Brustschmerzen", "clinical": "thorakaler Schmerz", "region": "thorax" },
+    { "match": ["rueckenschmerz", "rueckenweh", "kreuzschmerz"], "label": "Rückenschmerzen", "clinical": "Dorsalgie", "region": "ruecken" },
+    { "match": ["schwindel"], "label": "Schwindel", "clinical": "Vertigo/Schwindel", "region": "allgemein" },
+    { "match": ["husten"], "label": "Husten", "clinical": "Husten", "region": "thorax" },
+    { "match": ["halsschmerz", "halsweh"], "label": "Halsschmerzen", "clinical": "Odynophagie/Halsschmerz", "region": "hals" },
+    { "match": ["knieschmerz", "kniebeschwerden"], "label": "Knieschmerzen", "clinical": "Gonalgie", "region": "extremitaeten" },
+    { "match": ["schulterschmerz"], "label": "Schulterschmerzen", "clinical": "Omalgie", "region": "extremitaeten" },
+    { "match": ["durchfall"], "label": "Durchfall", "clinical": "Diarrhö", "region": "abdomen" },
+    { "match": ["uebelkeit"], "label": "Übelkeit", "clinical": "Nausea", "region": "abdomen" },
+    { "match": ["muedigkeit", "erschoepfung"], "label": "Müdigkeit", "clinical": "Fatigue", "region": "allgemein" },
+    { "match": ["hautausschlag", "juckreiz"], "label": "Hautveränderung", "clinical": "Exanthem/Pruritus", "region": "haut" },
+    { "match": ["herzklopfen", "herzrasen"], "label": "Herzklopfen", "clinical": "Palpitationen", "region": "thorax" },
+    { "match": ["atemnot", "luftnot"], "label": "Atemnot", "clinical": "Dyspnoe", "region": "thorax" },
+    { "match": ["schmerz"], "label": "Schmerzen", "clinical": "Schmerz", "region": "sonstige" }
+  ],
+  "quality": { "stechend": "stechend", "druck": "Druckschmerz", "drueckend": "Druckschmerz", "brennend": "brennend", "dumpf": "dumpf", "krampf": "krampfartig", "pochend": "pulsierend", "ziehend": "ziehend", "bohrend": "bohrend" },
+  "duration": { "staendig": "kontinuierlich", "dauernd": "kontinuierlich", "permanent": "kontinuierlich", "anfallsweise": "intermittierend", "immer wieder": "intermittierend", "kommt und geht": "intermittierend" },
+  "course": { "besser": "Besserung", "schlechter": "Zunahme", "schlimmer": "Zunahme", "gleich": "unverändert", "unveraendert": "unverändert", "wechselnd": "wechselnd", "schwankend": "wechselnd" },
+  "triggers": { "belastung": "belastungsabhängig", "bewegung": "bewegungsabhängig", "essen": "nahrungsabhängig", "ruhe": "in Ruhe", "nachts": "nächtliche Betonung", "liegen": "lageabhängig", "stress": "stressassoziiert (Patientenangabe)" },
+  "side": { "links": "links", "rechts": "rechts", "beidseits": "beidseits", "beide": "beidseits" },
+  "anatomy": { "brust": "thorakal", "bauch": "abdominal", "kopf": "Kopf", "stirn": "frontal", "hinterkopf": "okzipital", "rücken": "Rücken", "ruecken": "Rücken", "nacken": "Nacken", "hals": "Hals", "bein": "Bein", "arm": "Arm", "knie": "Knie", "schulter": "Schulter", "hüfte": "Hüfte", "fuss": "Fuß", "hand": "Hand" },
+  "accompanying": { "uebelkeit": "Nausea", "schwindel": "Schwindel", "erbrechen": "Emesis", "fieber": "Fieber", "durchfall": "Diarrhö", "muedigkeit": "Fatigue", "husten": "Husten", "schwitzen": "Hyperhidrose", "herzklopfen": "Palpitationen", "kribbeln": "Parästhesien", "taubheit": "Hypästhesie", "lichtempfindlich": "Photophobie" },
+  "history": { "bluthochdruck": "arterielle Hypertonie (Patientenangabe)", "diabetes": "Diabetes mellitus (Patientenangabe)", "asthma": "Asthma bronchiale (Patientenangabe)" }
+}
