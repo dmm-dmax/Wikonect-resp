@@ -31,7 +31,7 @@ Folgefragen sind neutral und kommen aus einem festen Katalog. Keine Suggestivfra
 
 ## Stack
 - TypeScript, Next.js (App Router), React, Tailwind
-- PostgreSQL 16, Prisma
+- PostgreSQL 16, Drizzle ORM (SQL-Migrationen in `/drizzle`)
 - Vitest (Unit/Integration), Playwright (E2E, später), ESLint, `tsc --noEmit`
 - Auth: eigene Session-Auth (argon2id, httpOnly-Cookies), zwei getrennte Realms (Patient / Arzt), Arzt mit TOTP
 - KI: Interface `LlmProvider` mit `MockProvider` (Default) und echten Adaptern per `LLM_PROVIDER`-Env

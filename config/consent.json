@@ -1,0 +1,25 @@
+{
+  "version": "2026-09-v1",
+  "status": "ENTWURF – nicht juristisch geprüft",
+  "purposes": [
+    {
+      "id": "dialog",
+      "required": true,
+      "title": "Angaben zu meinen Beschwerden erfassen",
+      "text": "Ich willige ein, dass meine Gesundheitsangaben in diesem Dialog erfasst und meiner Ärztin / meinem Arzt vor dem Termin zur Verfügung gestellt werden."
+    },
+    {
+      "id": "ai_processing",
+      "required": true,
+      "title": "Verarbeitung mit KI",
+      "text": "Ich willige ein, dass meine Angaben von einem KI-System in Fachsprache übersetzt und geordnet werden. Die KI stellt keine Diagnose und gibt keine Bewertung ab. Die Verarbeitung erfolgt in der EU."
+    },
+    {
+      "id": "upload",
+      "required": false,
+      "title": "Befunde hochladen",
+      "text": "Ich willige ein, dass ich Befunde (PDF, Bilder) hochladen kann und diese meiner Ärztin / meinem Arzt angezeigt werden."
+    }
+  ],
+  "info": "Sie können Ihre Einwilligung jederzeit widerrufen. Ihre Angaben werden dann sofort gelöscht. Verantwortlich ist Ihre Praxis. wikonect GmbH verarbeitet die Daten in deren Auftrag."
+}

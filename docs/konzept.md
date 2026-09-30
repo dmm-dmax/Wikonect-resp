@@ -4,7 +4,7 @@ Stand: 2026-09-30 · Status: Entwurf zur Freigabe
 Regulatorische Aussagen sind Arbeitsstand, keine Rechtsberatung. Vor Pilot juristisch und regulatorisch prüfen lassen (siehe `risiken.md`).
 
 ## 1. Stack-Begründung
-Next.js mit TypeScript deckt Patienten-UI (mobile-first), Arzt-UI und Server-API in einem Projekt ab und hält den Betriebsaufwand klein. PostgreSQL liefert Transaktionen, Row-Level-Sicherheit und ist bei EU-Anbietern als Managed-Service verfügbar. Prisma und Zod halten Schema und Validierung typsicher, Vitest und ESLint sind Standard und schnell.
+Next.js mit TypeScript deckt Patienten-UI (mobile-first), Arzt-UI und Server-API in einem Projekt ab und hält den Betriebsaufwand klein. PostgreSQL liefert Transaktionen, Row-Level-Sicherheit und ist bei EU-Anbietern als Managed-Service verfügbar. Drizzle (reines JS, keine Binär-Engine) und Zod halten Schema und Validierung typsicher, Vitest und ESLint sind Standard und schnell.
 
 ## 2. Architektur
 
@@ -151,7 +151,7 @@ Die Zusammenfassung ersetzt nie die ärztliche Anamnese. Das steht im Arzt-UI un
 /docs/                 konzept, risiken, wettbewerb, monetarisierung, naechste-schritte
 /prompts/<name>/v1.md  versionierte Prompts
 /config/               questions.json, emergency.json, filter-patterns.json, lab-mapping.json
-/prisma/schema.prisma
+/src/server/db/schema.ts + /drizzle (Migrationen)
 /src/app/patient|arzt  zwei UIs
 /src/server/{auth,consent,dialog,emergency,filter,llm,upload,audit}
 /tests/

@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+:root { --brand: #0f4c5c; }
+body { @apply bg-slate-50 text-slate-900 antialiased; }
+.btn { @apply inline-flex min-h-12 items-center justify-center rounded-lg bg-[--brand] px-5 py-3 text-base font-medium text-white hover:opacity-90 disabled:opacity-50; }
+.btn-secondary { @apply inline-flex min-h-12 items-center justify-center rounded-lg border border-slate-300 bg-white px-5 py-3 text-base font-medium text-slate-800 hover:bg-slate-100; }
+.input { @apply w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-base; }
+.label { @apply mb-1 block text-sm font-medium text-slate-700; }
+.card { @apply rounded-xl border border-slate-200 bg-white p-5 shadow-sm; }
